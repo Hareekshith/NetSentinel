@@ -1,6 +1,6 @@
 from sniffer import start_sniffing
 from analyzer import analyze_packets
-from dashboard import banner, show_results
+from dashboard import banner, show_results, show_traffic_summary
 
 def main():
 
@@ -8,9 +8,11 @@ def main():
 
     packets = start_sniffing()
 
-    print("Analyzing packets...\n")
+    print("\nAnalyzing packets...\n")
 
-    results = analyze_packets(packets)
+    results, traffic_counter = analyze_packets(packets)
+
+    show_traffic_summary(traffic_counter)
 
     show_results(results)
 

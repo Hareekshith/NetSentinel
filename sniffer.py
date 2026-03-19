@@ -1,4 +1,4 @@
-from scapy.all import sniff
+from scapy.all import sniff, get_if_list
 from scapy.layers.inet import IP, TCP
 
 from detector import detect_portscan, detect_syn_flood
@@ -21,5 +21,17 @@ def process_packet(packet):
             detect_syn_flood(src, flags)
 
 def start_sniffing():
-    packets=sniff(prn=process_packet, store=True, timeout=60)
+
+    interfaces = get_if_list()
+
+    print(f"Sniffing on interfaces: {interfaces}\n")
+
+    packets = sniff(
+        iface=interfaces,
+        filter="tcp",
+        timeout=60
+    )
+
+    print(f"Captured {len(packets)} packets")
+
     return packets

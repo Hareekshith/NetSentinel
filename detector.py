@@ -2,7 +2,7 @@ from collections import defaultdict
 import time
 from dashboard import alert
 
-PORT_SCAN_THRESHOLD = 20
+PORT_SCAN_THRESHOLD = 10
 TIME_WINDOW = 5
 SYN_THRESHOLD = 100
 
