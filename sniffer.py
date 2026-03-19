@@ -21,5 +21,5 @@ def process_packet(packet):
             detect_syn_flood(src, flags)
 
 def start_sniffing():
-
-    sniff(prn=process_packet, store=False)
+    packets=sniff(prn=process_packet, store=True, timeout=60)
+    return packets
